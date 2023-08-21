@@ -1,12 +1,14 @@
-import React from 'react'
+import Layout from '../../Components/Layout'
+import Card from '../../Components/Card'
 
 function Home() {
   
   return (
     <>
-      <div className='bg-gradient-to-r from-cyan-500 to-blue-500 w-full h-full flex'>
-        <h1>Home component</h1>
-      </div>
+      <Layout>
+        Home component
+        <Card />
+      </Layout>
     </>
   )
 }

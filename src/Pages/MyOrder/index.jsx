@@ -1,12 +1,12 @@
-import React from 'react'
+import Layout from '../../Components/Layout'
 
 function MyOrder() {
   
   return (
     <>
-      <div className='bg-gradient-to-r from-cyan-500 to-blue-500 w-full h-full flex'>
-        <h1>MyOrder Component</h1>
-      </div>
+      <Layout>
+        MyOrder Component
+      </Layout>
     </>
   )
 }
