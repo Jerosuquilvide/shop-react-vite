@@ -8,7 +8,7 @@ function NotFound() {
         <div className="text-center">
           <p className="text-base font-semibold text-indigo-600 text-4xl">404 but ... </p>
             <br></br>
-            <img decoding='async' lazy='loading' id='gif' src="../../public/img/this-is-fine-404.gif"></img>  
+            <img decoding='async' lazy='loading' id='gif' src="../../img/this-is-fine-404.gif"></img>  
           <p className="mt-6 text-base leading-7 text-gray-600">Sorry, we couldn’t find the page you’re looking for.</p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a href="/" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go back home</a>
