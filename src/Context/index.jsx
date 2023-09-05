@@ -14,6 +14,9 @@ const ShoppingCartProvider = ({children}) => {
     //state that saves the shopping cart
     const [cartProducts, setCartProducts] = useState([]);
 
+    //state that saves the shopping cart
+    const [order, setOrder] = useState([]);
+
     const setVisibilityProductDetail = () => setIsProdDetailOpen(!isProdDetailOpen)
 
     const setVisibilityCheckOut = () => setIsCheckOutOpen(!isCheckOutOpen);
@@ -29,7 +32,9 @@ const ShoppingCartProvider = ({children}) => {
             setCartProducts,
             isCheckOutOpen,
             setIsCheckOutOpen,
-            setVisibilityCheckOut
+            setVisibilityCheckOut,
+            order,
+            setOrder
         }}>
             {children}
         </ShoppingCartContext.Provider>

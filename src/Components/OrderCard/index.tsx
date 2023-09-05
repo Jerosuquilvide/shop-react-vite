@@ -12,15 +12,17 @@ const OrderCard = props => {
                 <figure className=" w-20 h-20 p-">
                     <img src={imageUrl} alt={title} className="w-full h-full object-cover rounded-lg" />
                 </figure>
-                <p className=" text-sm font-light">{title}</p>
+                <p className="text-sm font-light mx-4">{title}</p>
             </div>
 
             <div className=" flex items-center gap-2">
                 <p className=" text-lg font-medium">$ {price}</p>
-                <XMarkIcon 
-                    className="h-6 w-6 text-black hover:cursor-pointer"
-                    onClick={ () => handleDelete(id)}
-                    />
+                {
+                    handleDelete &&                 
+                    <XMarkIcon
+                    onClick={()=>handleDelete(id)}
+                    className="h-4 w-4 text-black cursor-pointer "/>
+                }
             </div>
         </div>
     )

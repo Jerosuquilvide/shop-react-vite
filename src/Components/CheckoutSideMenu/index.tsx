@@ -1,19 +1,34 @@
 import "./styles.css"
 import { XMarkIcon } from "@heroicons/react/20/solid"
 import { useContext } from "react"
+import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import OrderCard from "../OrderCard";
 import { totalPrice } from "../../utils";
 const CheckoutSideMenu = () => {
     
-    const { isCheckOutOpen, setVisibilityCheckOut , cartProducts,setCartProducts} = useContext(ShoppingCartContext);
+    const { isCheckOutOpen, setVisibilityCheckOut , cartProducts,setCartProducts, setCount, count, setOrder,order} = useContext(ShoppingCartContext);
    
     const context = useContext(ShoppingCartContext);
     
     const handleDelete = (id) => {
         const filterProducts = cartProducts.filter(product => product.id != id)
         setCartProducts(filterProducts)
+        setCount(count - 1)
 
+    }
+
+    const handleCheckOut = () => {
+        const orderToAdd = {
+            date : new Date(),
+            products: cartProducts,
+            totalProducts: cartProducts.length,
+            totalPrice : totalPrice(cartProducts)
+        }
+        setOrder([...order, orderToAdd])
+        setCartProducts([])
+        setCount(0)
+        setVisibilityCheckOut()
     }
 
     return (
@@ -26,9 +41,9 @@ const CheckoutSideMenu = () => {
                 </div>
             </div>
 
-            <div className="px-6 overflow-y-scroll">
+            <div className="px-6 overflow-y-scroll flex-1">
                 {
-                    context.cartProducts.map(product => (
+                    context.cartProducts.map(product  => (
                         <OrderCard 
                             key={product.id}
                             id={product.id}
@@ -45,6 +60,12 @@ const CheckoutSideMenu = () => {
                 <p className="flex justify-between items-center">
                     <span className="font-ligth">Total: </span>
                     <span className="font-medium text-2xl">$ {totalPrice(context.cartProducts)}</span>
+                </p>
+
+                <p className="flex justify-between items-center">
+                    <Link to="/my-orders/last">
+                            <button className="bn w-full py-3 my-10" onClick={ () => handleCheckOut()}>Checkout</button>
+                    </Link>
                 </p>
             </div>
         </aside>

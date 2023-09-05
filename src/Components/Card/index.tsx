@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 import { CheckIcon, PlusIcon } from "@heroicons/react/20/solid"
 const Card = (data) => {
-    const {count, setCount, setVisibilityProductDetail,setVisibilityCheckOut, setProductToShow, isProdDetailOpen, isCheckOutOpen,setCartProducts, cartProducts} = useContext(ShoppingCartContext)
+    const {count, setCount, setVisibilityProductDetail,setVisibilityCheckOut, setProductToShow , isProdDetailOpen, isCheckOutOpen,setCartProducts, cartProducts} = useContext(ShoppingCartContext)
     
     const showProduct = (productDetail) => {
         if(!isProdDetailOpen){
