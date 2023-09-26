@@ -19,7 +19,9 @@ const CheckoutSideMenu = () => {
     }
 
     const handleCheckOut = () => {
+        
         const orderToAdd = {
+            id: order.length + 1,
             date : new Date(),
             products: cartProducts,
             totalProducts: cartProducts.length,
