@@ -6,7 +6,7 @@ function NotFound() {
     <Layout>
     <main className="grid h-screen place-items-center bg-white  px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
-          <p className="text-base font-semibold text-indigo-600 text-4xl">404 but ... </p>
+          <p className="font-semibold text-indigo-600 text-4xl">404 but ... </p>
             <br></br>
             <img decoding='async' lazy='loading' id='gif' src="../../img/this-is-fine-404.gif"></img>  
           <p className="mt-6 text-base leading-7 text-gray-600">Sorry, we couldn’t find the page you’re looking for.</p>

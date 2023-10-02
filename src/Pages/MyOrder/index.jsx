@@ -18,8 +18,6 @@ function MyOrder() {
     }else{
       indexOrder = parseInt(indexOrder) - 1
     }
-    console.log(context.order[indexOrder]);
-    console.log({indexOrder});
   return (
     <>
       <Layout>

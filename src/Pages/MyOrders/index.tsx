@@ -6,17 +6,15 @@ import  OrderCards  from '../../Components/OrderCards/index'
 function MyOrders() {
   
   const context:undefined = useContext(ShoppingCartContext);
-  console.log(context);
   
   return (
     
       <Layout>
-        <div className='flex items-center w-80  justify-center relative'>
+        <div className='flex items-center w-80  justify-center relative font-medium text-xl mb-4'>
           My Orders 
         </div>
        {
         context.order.map( (o,index) => (
-          
           <Link key={index} to={`/my-orders/${o.id}`}> 
             <OrderCards 
               totalPrice={o.totalPrice} 

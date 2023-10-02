@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const ShoppingCartContext = createContext();
 
@@ -17,6 +17,57 @@ const ShoppingCartProvider = ({children}) => {
     //state that saves the shopping cart
     const [order, setOrder] = useState([]);
 
+    //Get products
+    const [item, setItem] = useState(null);
+    const [filteredItemByTitle, setFilteredItemByTitle] = useState(null);
+    
+    //Get products by title
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    const [searchByCategory, setSearchByCategory] = useState(null);
+
+    useEffect(() => {
+        fetch('https://api.escuelajs.co/api/v1/products')
+        .then(response => response.json())
+        .then(data => setItem(data))
+      },[])
+    
+    const filteredItemsByTitle = (item, searchByTitle) => {
+        return item?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+    const filteredItemsByCategory = (item, searchByCategory) => {
+        return item?.filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+    }
+
+    const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+        if (searchType === 'BY_TITLE') {
+          return filteredItemsByTitle(items, searchByTitle)
+        }
+    
+        if (searchType === 'BY_CATEGORY') {
+          return filteredItemsByCategory(items, searchByCategory)
+        }
+    
+        if (searchType === 'BY_TITLE_AND_CATEGORY') {
+          return filteredItemsByCategory(items, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+        }
+    
+        if (!searchType) {
+          return items
+        }
+      }
+    
+      useEffect(() => {
+        if (searchByTitle && searchByCategory) setFilteredItemByTitle(filterBy('BY_TITLE_AND_CATEGORY', item, searchByTitle, searchByCategory))
+        if (searchByTitle && !searchByCategory) setFilteredItemByTitle(filterBy('BY_TITLE', item, searchByTitle, searchByCategory))
+        if (!searchByTitle && searchByCategory) setFilteredItemByTitle(filterBy('BY_CATEGORY', item, searchByTitle, searchByCategory))
+        if (!searchByTitle && !searchByCategory) setFilteredItemByTitle(filterBy(null, item, searchByTitle, searchByCategory))
+        return () => {
+            setSearchByTitle(null)
+          }
+      }, [item, searchByTitle, searchByCategory])
+
+
+
     const setVisibilityProductDetail = () => setIsProdDetailOpen(!isProdDetailOpen)
 
     const setVisibilityCheckOut = () => setIsCheckOutOpen(!isCheckOutOpen);
@@ -34,7 +85,14 @@ const ShoppingCartProvider = ({children}) => {
             setIsCheckOutOpen,
             setVisibilityCheckOut,
             order,
-            setOrder
+            setOrder,
+            item,
+            setItem,
+            searchByTitle,
+            setSearchByTitle,
+            filteredItemByTitle,
+            searchByCategory,
+            setSearchByCategory
         }}>
             {children}
         </ShoppingCartContext.Provider>
