@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import  OrderCards  from '../../Components/OrderCards/index'
 function MyOrders() {
   
-  const context:undefined = useContext(ShoppingCartContext);
+  const context = useContext(ShoppingCartContext);
   
   return (
     
